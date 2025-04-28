@@ -41,31 +41,16 @@ public class Main {
 
     private static boolean izvrsiIzbor(int n, Statement statement) throws SQLException, Exception{
         boolean nastavi = true;
+
         switch (n) {
-            case 1: {
-                unosDrzaveIzbor(statement);
-                break;
-            }
-            case 2: {
-                izmjenaDrzaveIzbor(statement);
-                break;
-            }
-            case 3: {
-                brisanjeDrzaveIzbor(statement);
-                break;
-            }
-            case 4: {
-                ispisiDrzavePaginirano(statement);
-                break;
-            }
-            case 5: {
-                nastavi = false;
-                break;
-            }
-            default: {
-                System.out.println("Nepostojeci izbor");
-            }
+            case 1 -> unosDrzaveIzbor(statement);
+            case 2 -> izmjenaDrzaveIzbor(statement);
+            case 3 -> brisanjeDrzaveIzbor(statement);
+            case 4 -> ispisiDrzavePaginirano(statement);
+            case 5 -> nastavi = false;
+            default -> System.out.println("Nepostojeci izbor");
         }
+
         return nastavi;
     }
 
