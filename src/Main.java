@@ -39,6 +39,21 @@ public class Main {
         }
     }
 
+    private static int izbor() {
+        Scanner scanner = new Scanner(System.in);
+        var broj = scanner.nextInt();
+        scanner.nextLine();
+        return broj;
+    }
+
+    private static void ispisiIzbornik() {
+        System.out.println("1 za unos");
+        System.out.println("2 za izmjenu");
+        System.out.println("3 za brisanje");
+        System.out.println("4 za prikaz drzava");
+        System.out.println("5 za kraj");
+    }
+
     private static boolean izvrsiIzbor(int n, Statement statement) throws SQLException, Exception{
         boolean nastavi = true;
 
@@ -54,44 +69,11 @@ public class Main {
         return nastavi;
     }
 
-
-    private static void ispisiIzbornik() {
-        System.out.println("1 za unos");
-        System.out.println("2 za izmjenu");
-        System.out.println("3 za brisanje");
-        System.out.println("4 za prikaz drzava");
-        System.out.println("5 za kraj");
-    }
-
-    private static int izbor() {
-        Scanner scanner = new Scanner(System.in);
-        var broj = scanner.nextInt();
-        scanner.nextLine();
-        return broj;
-    }
-
-    private static void izmjenaDrzave(Statement statement, int ID, String naziv) throws SQLException {
-        statement.executeUpdate(
-                String.format("update Drzava set Naziv='%s' where IDDrzava=%s",naziv, ID)
-        );
-    }
-
-    private static void brisanjeDrzave(Statement statement, int ID) throws SQLException {
-        statement.executeUpdate(
-                String.format("DELETE FROM Drzava WHERE IDDrzava=%s", ID)
-        );
-    }
-
-    private static void unosDrzave(Statement statement, String naziv) throws SQLException {
-        statement.executeUpdate(
-                String.format("insert into Drzava(Naziv) values('%s')", naziv)
-        );
-    }
-
     private static void unosDrzaveIzbor(Statement statement) throws SQLException{
         System.out.println("Unesite naziv drzave");
         Scanner scanner = new Scanner(System.in);
         var naziv = scanner.nextLine();
+
         unosDrzave(statement, naziv);
     }
 
@@ -108,8 +90,11 @@ public class Main {
         System.out.printf("Odabrana drzava je: %s\n", prethodniNaziv);
         System.out.println("Jeste li sigurni da zelite obrisati drzavu D?");
         var line = scanner.nextLine();
+
         if (line.toLowerCase().equals("d")) {
+
             brisanjeDrzave(statement, ID);
+
             System.out.println("Uspjesno ste izmijenili naziv drzave");
         }
         System.out.println();
@@ -133,10 +118,30 @@ public class Main {
         if (line.toLowerCase().equals("n")) {
             return;
         }
+
         izmjenaDrzave(statement, ID, line);
+
         System.out.println("Uspjesno ste izmijenili drzavu");
         System.out.println();
 
+    }
+
+    private static void izmjenaDrzave(Statement statement, int ID, String naziv) throws SQLException {
+        statement.executeUpdate(
+                String.format("update Drzava set Naziv='%s' where IDDrzava=%s",naziv, ID)
+        );
+    }
+
+    private static void brisanjeDrzave(Statement statement, int ID) throws SQLException {
+        statement.executeUpdate(
+                String.format("DELETE FROM Drzava WHERE IDDrzava=%s", ID)
+        );
+    }
+
+    private static void unosDrzave(Statement statement, String naziv) throws SQLException {
+        statement.executeUpdate(
+                String.format("insert into Drzava(Naziv) values('%s')", naziv)
+        );
     }
 
     private static void printDrzavaPageN(Statement statement, int page, int pageSize, int pagesCount) throws SQLException {
@@ -177,7 +182,6 @@ public class Main {
         return resultSet.getInt("broj");
     }
 
-
     private static ResultSet dohvatiDrzave(Statement statement) throws SQLException {
         return statement.executeQuery(
                 "Select IDDrzava,Naziv from Drzava"
@@ -196,8 +200,6 @@ public class Main {
                 )
         );
     }
-
-
 
     private static void ispisiDrzave(ResultSet resultSet) throws SQLException  {
             System.out.printf(" ID |  NAZIV\n");

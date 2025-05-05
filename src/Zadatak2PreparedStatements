@@ -1,0 +1,5 @@
+Napiši Java konzolnu aplikaciju koja unosi 10 novih država u bazu. Nazivi država se nalaze u kolekciji tipa ArrayList.
+Koristite PreparedStatement.
+
+Na bazi pripremite pohranjenu proceduru za brisanje svih država čiji ID je veći ili jednak od zadane vrijednosti.
+Pozovite tu pohranjenu procedure iz Java koda i pobrišite sve države koje ste kreirali u zadatku iznad.
