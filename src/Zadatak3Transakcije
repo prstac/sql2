@@ -1,0 +1,8 @@
+*******************************
+Napiši Java konzolnu aplikaciju koja rješava sljedeći problem.
+
+* Kod unosa stavki (tablica Stavka) zabunom je unesena cijena po komadu za stavke sa id-evima 8 i 9.
+* Cijenu po komadu za stavku sa id-em 8 treba povećati za 10, a cijenu po komadu stavke sa id-em 9 treba smanjiti za 10
+* Osigurati da se obje izmjene dogode u transakciji, tj ili se izvrše obje izmjene ili niti jedna
+
+*******************************
